@@ -1,6 +1,6 @@
 {
   "name": "asana-axi",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Agent-ergonomic Asana CLI over the REST API, with token-efficient TOON output and idempotent mutations.",
   "type": "module",
   "repository": {
