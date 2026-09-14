@@ -1,7 +1,6 @@
 import { AxiError } from "axi-sdk-js";
 import type { AxiStructuredOutput } from "../render.js";
 import {
-  flagValue,
   parseFlags,
   parseLimit,
   rejectPositionals,
@@ -10,7 +9,6 @@ import {
 } from "../args.js";
 import { openClient, type CliDeps } from "../context.js";
 import { gidOf, isGid, nameOf, stripNulls, type WorkspaceRecord } from "../render.js";
-import { listWorkspaces } from "../resolve.js";
 
 export const WORKSPACE_HELP = `usage: asana-axi workspace <subcommand> [flags]
 subcommands[2]:
@@ -106,8 +104,6 @@ async function viewWorkspace(
         (domain): domain is string => typeof domain === "string",
       )
     : [];
-  const names = await listWorkspaces(client);
-  const match = names.find((candidate) => candidate.gid === gid);
   return stripNulls({
     workspace: {
       gid: gidOf(workspace),

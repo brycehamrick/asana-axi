@@ -4,13 +4,10 @@ import { taskCommand } from "../../src/commands/task.js";
 import {
   createFakeFetch,
   fakeDeps,
-  fixtureTaskDone,
   fixtureTaskOpen,
   PROJECT_GID,
   SECTION_BACKLOG,
-  SECTION_WIP,
   standardRoutes,
-  TAG_BUG,
   TAG_FRONTEND,
   TASK_DONE,
   TASK_OPEN,

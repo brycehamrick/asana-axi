@@ -135,9 +135,16 @@ async function viewProject(
       },
     },
   );
+  // The counts endpoint is compact-by-default: without opt_fields it
+  // returns {} (verified live), so request the numbers explicitly.
   const counts = await client.request<Record<string, unknown>>(
     "GET",
     `/projects/${gid}/task_counts`,
+    {
+      query: {
+        opt_fields: "num_tasks,num_completed_tasks,num_incomplete_tasks",
+      },
+    },
   );
 
   const owner = project.owner as Record<string, unknown> | null | undefined;

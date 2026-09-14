@@ -76,6 +76,11 @@ export async function homeCommand(
         const counts = await client.request<Record<string, unknown>>(
           "GET",
           `/projects/${config.projectId}/task_counts`,
+          {
+            query: {
+              opt_fields: "num_tasks,num_completed_tasks,num_incomplete_tasks",
+            },
+          },
         );
         const project = await client.request<ProjectRecord>(
           "GET",

@@ -925,7 +925,7 @@ async function setCompletion(
   complete: boolean,
 ): Promise<AxiStructuredOutput> {
   const sub = complete ? "complete" : "reopen";
-  const { flags, positionals } = parseFlags(args, {}, `task ${sub}`);
+  const { positionals } = parseFlags(args, {}, `task ${sub}`);
   const gid = requireTaskGid(positionals, sub);
 
   const { client } = openClient(deps);

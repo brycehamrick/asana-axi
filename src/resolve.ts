@@ -125,12 +125,13 @@ function ambiguousError(kind: string, name: string, matches: NameMatch[]): AxiEr
 /**
  * Resolve a project reference: GID passthrough, else name search inside the
  * workspace. Falls back to ASANA_PROJECT_ID when no flag is given.
+ * `workspaceRef` may be a GID, a name, or undefined (env/autodetect).
  */
 export async function resolveProjectGid(
   client: AsanaClient,
   config: AsanaConfig,
   flag: string | undefined,
-  workspaceGid?: string,
+  workspaceRef?: string,
 ): Promise<string> {
   const candidate = flag ?? config.projectId;
   if (!candidate) {
@@ -145,8 +146,7 @@ export async function resolveProjectGid(
     );
   }
   if (isGid(candidate)) return candidate;
-  const workspace =
-    workspaceGid ?? (await resolveWorkspaceGid(client, config, undefined));
+  const workspace = await resolveWorkspaceGid(client, config, workspaceRef);
   const { items } = await client.collect<ProjectRecord>(
     `/workspaces/${workspace}/projects`,
     { limit: 200, query: { opt_fields: "gid,name,archived" } },

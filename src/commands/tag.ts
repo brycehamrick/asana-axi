@@ -8,7 +8,7 @@ import {
   unknownSubcommandError,
 } from "../args.js";
 import { openClient, type CliDeps } from "../context.js";
-import { gidOf, isGid, nameOf, stripNulls, type TagRecord } from "../render.js";
+import { gidOf, nameOf, stripNulls, type TagRecord } from "../render.js";
 import { resolveWorkspaceGid } from "../resolve.js";
 
 export const TAG_HELP = `usage: asana-axi tag <subcommand> [flags]

@@ -85,17 +85,18 @@ export function taskListRow(task: TaskRecord): TaskListRow {
 // to nulls instead of crashes; fixtures in test/ pin the expected shape).
 // ---------------------------------------------------------------------------
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// Tolerant record aliases over Asana's JSON payloads (defensive: API drift
+// degrades to nulls instead of crashes; fixtures in test/ pin the shape).
 export type JsonRecord = Record<string, any>;
 
-export interface TaskRecord extends JsonRecord {}
-export interface ProjectRecord extends JsonRecord {}
-export interface WorkspaceRecord extends JsonRecord {}
-export interface SectionRecord extends JsonRecord {}
-export interface TagRecord extends JsonRecord {}
-export interface UserRecord extends JsonRecord {}
-export interface StoryRecord extends JsonRecord {}
-export interface AttachmentRecord extends JsonRecord {}
+export type TaskRecord = JsonRecord;
+export type ProjectRecord = JsonRecord;
+export type WorkspaceRecord = JsonRecord;
+export type SectionRecord = JsonRecord;
+export type TagRecord = JsonRecord;
+export type UserRecord = JsonRecord;
+export type StoryRecord = JsonRecord;
+export type AttachmentRecord = JsonRecord;
 
 export function gidOf(record: JsonRecord): string {
   return String(record.gid ?? "");
