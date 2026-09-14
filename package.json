@@ -33,6 +33,7 @@
     "test": "vitest run",
     "lint": "eslint .",
     "skill:check": "node -e \"require('node:fs').accessSync('skills/asana-axi/SKILL.md')\"",
+    "prepublishOnly": "npm run typecheck && npm run lint && npm test && npm run skill:check && npm run build",
     "dev": "tsx src/bin/asana-axi.ts"
   },
   "license": "MIT",
