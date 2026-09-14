@@ -24,10 +24,20 @@ git push -u origin main
 
 ## 2. Publish to npm
 
+From a clone (dependencies first - a fresh clone has no `node_modules` and
+no `dist/`, so the gates would fail with `tsc: command not found`):
+
 ```sh
+npm ci               # install dev dependencies (tsc, vitest, tsup, ...)
 npm login            # browser + 2FA
 npm publish          # access is already "public" in package.json
 ```
+
+`prepublishOnly` runs typecheck, lint, tests, the skill check, and the build
+automatically - `npm publish` cannot ship a package that fails them. The
+early "No bin file found at dist/bin/asana-axi.js" warning can appear while
+npm loads the manifest before the build runs; it is expected on a fresh
+clone and harmless (the tarball is packed after the build).
 
 Verify from a clean directory:
 
