@@ -34,6 +34,37 @@ cp .env.example .env   # then fill in ASANA_ACCESS_TOKEN
 
 ## Install paths
 
+### New-computer checklist
+
+The skill is what teaches agents that asana-axi exists - OpenCode (and other
+agents) discover it from the user-level skills directory at session start.
+The CLI itself needs no install: the skill invokes `npx -y asana-axi@latest`.
+
+```sh
+# 1. Node >= 20
+brew install node@24        # macOS; winget install OpenJS.NodeJS.LTS on Windows; nvm on Linux
+
+# 2. Token in the environment (persistent)
+echo 'export ASANA_ACCESS_TOKEN=<your-pat>' >> ~/.zshrc && source ~/.zshrc
+
+# 3. Install the skill (user-level, non-interactive - plain `-g` prompts
+#    for "which agents?" and fails in a non-TTY)
+npx -y skills@latest add brycehamrick/asana-axi --skill asana-axi --agent opencode -g -y
+
+# 4. Verify - zero-install, npx pulls the CLI on demand
+npx -y asana-axi@latest me
+```
+
+Optional, for ambient context (the dashboard injected into every session
+start; requires the global install) and pinned defaults:
+
+```sh
+npm i -g asana-axi
+asana-axi setup hooks          # OpenCode plugin + Claude Code + Codex hooks
+echo 'export ASANA_WORKSPACE_ID=<gid>' >> ~/.zshrc   # optional
+echo 'export ASANA_PROJECT_ID=<gid>'   >> ~/.zshrc   # optional
+```
+
 ### 1. Zero install (recommended for agents)
 
 ```sh
