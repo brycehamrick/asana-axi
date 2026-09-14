@@ -7,10 +7,10 @@ Agent-ergonomic Asana CLI over the REST API, with token-efficient [TOON](https:/
 Install the asana-axi skill in the Agent Skills format with npx skills:
 
 ```
-npx -y skills@latest add brycehamrick/asana-axi --skill asana-axi -g
+npx -y skills@latest add brycehamrick/asana-axi --skill asana-axi --agent opencode -g -y
 ```
 
-That is the entire setup - no npm install needed. The skill teaches your agent to run asana-axi through `npx -y asana-axi@latest`, so the CLI comes along on demand. `-g` installs the skill user-level for all projects; drop it to install for the current project only.
+That is the entire setup - no npm install needed. The skill teaches your agent to run asana-axi through `npx -y asana-axi@latest`, so the CLI comes along on demand. `-g` installs the skill user-level for all projects; drop it to install for the current project only. Swap `--agent opencode` for your agent of choice (or `--agent '*'`); the flag keeps the install non-interactive - plain `-g` prompts for target agents and fails in a non-TTY.
 
 ## Other Ways to Install
 
