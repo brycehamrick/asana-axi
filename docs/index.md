@@ -4,3 +4,4 @@
 - [Commands](commands.md) - full reference with flags and caveats
 - [Limitations](limitations.md) - known lossy behaviors and API gaps
 - [Setup and update](setup.md) - session hooks, self-update
+- [Upstream catalog runbook](upstream-catalog.md) - adding asana-axi to the axi.md catalog
